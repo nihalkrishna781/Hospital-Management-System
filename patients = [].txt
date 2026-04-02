@@ -1,0 +1,103 @@
+patients = []
+appointments = []
+bills = []
+
+# Add Patient
+def add_patient():
+    name = input("Enter patient name: ")
+    patients.append(name)
+    print("Patient added")
+
+# View Patients
+def view_patients():
+    if len(patients) == 0:
+        print("No patients")
+        return
+    print("\nPatients List:")
+    for i in range(len(patients)):
+        print(i, "-", patients[i])
+
+# Add Appointment
+def add_appointment():
+    if len(patients) == 0:
+        print("No patients available")
+        return
+
+    view_patients()
+    index = int(input("Select patient number: "))
+
+    if index < 0 or index >= len(patients):
+        print("Invalid selection")
+        return
+
+    doctor = input("Enter doctor name: ")
+    appointments.append((patients[index], doctor))
+    print("Appointment added")
+
+# View Appointments
+def view_appointments():
+    if len(appointments) == 0:
+        print("No appointments")
+        return
+
+    print("\nAppointments:")
+    for a in appointments:
+        print("Patient:", a[0], "| Doctor:", a[1])
+
+# Add Bill
+def add_bill():
+    if len(patients) == 0:
+        print("No patients available")
+        return
+
+    view_patients()
+    index = int(input("Select patient number: "))
+
+    if index < 0 or index >= len(patients):
+        print("Invalid selection")
+        return
+
+    amount = input("Enter amount: ")
+    bills.append((patients[index], amount))
+    print("Bill added")
+
+# View Bills
+def view_bills():
+    if len(bills) == 0:
+        print("No bills")
+        return
+
+    print("\nBills:")
+    for b in bills:
+        print("Patient:", b[0], "| Amount:", b[1])
+
+# Main Menu
+while True:
+    print("\n--- Hospital Management System ---")
+    print("1. Add Patient")
+    print("2. View Patients")
+    print("3. Add Appointment")
+    print("4. View Appointments")
+    print("5. Add Bill")
+    print("6. View Bills")
+    print("7. Exit")
+
+    choice = input("Enter choice: ")
+
+    if choice == "1":
+        add_patient()
+    elif choice == "2":
+        view_patients()
+    elif choice == "3":
+        add_appointment()
+    elif choice == "4":
+        view_appointments()
+    elif choice == "5":
+        add_bill()
+    elif choice == "6":
+        view_bills()
+    elif choice == "7":
+        print("Exiting...")
+        break
+    else:
+        print("Invalid choice")
